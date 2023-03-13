@@ -41,13 +41,13 @@ int levenshtein_distance(char* s1, char* s2) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc < 2)
+    if (argc < 3)
     {
         return 1;
     }
 
     // Open the word list file
-    FILE* wordListFile = fopen("surah-names.txt", "r");
+    FILE* wordListFile = fopen(argv[2], "r");
     if (!wordListFile) {
         return 1;
     }

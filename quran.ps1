@@ -1,6 +1,7 @@
 $surahXmlPath = $PSScriptRoot + '\surahs.xml'
 $ayatXmlPath = $PSScriptRoot + '\ayat.xml'
 $surahCheckerPath = $PSScriptRoot + '\surah-checker.exe'
+$surahNamesPath = $PSScriptRoot + '\surah-names.txt'
 $tmpFile = $PSScriptRoot + '\tmp.txt'
 
 if ( $args.Count -eq 1 )
@@ -14,7 +15,8 @@ if ( $args.Count -eq 1 )
     }
     else
     {
-        Start-Process $surahCheckerPath -ArgumentList $surah -NoNewWindow -Wait -RedirectStandardOutput $tmpFile
+        $args = $surah + " " + $surahNamesPath
+        Start-Process $surahCheckerPath -ArgumentList $args -NoNewWindow -Wait -RedirectStandardOutput $tmpFile
         $output = Get-Content $tmpFile
         $node = $surahXml.root.row | Where-Object { $_.TransliterationName -eq $output }
         Write-Output $output
@@ -32,7 +34,8 @@ else
     }
     else
     {
-        Start-Process $surahCheckerPath -ArgumentList $surah -NoNewWindow -Wait -RedirectStandardOutput $tmpFile
+        $args = $surah + " " + $surahNamesPath
+        Start-Process $surahCheckerPath -ArgumentList $args -NoNewWindow -Wait -RedirectStandardOutput $tmpFile
         $output = Get-Content $tmpFile
         $surahXml = [xml](Get-Content $surahXmlPath)
         $node = $surahXml.root.row | Where-Object { $_.TransliterationName -eq $output }
