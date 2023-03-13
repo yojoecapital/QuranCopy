@@ -1,6 +1,6 @@
 # Quran Copy
 
-This is a command to copy Ayat from the Quran. To use it, place the path to the `QuranCopy` directory in `Path` for System Variables.
+This is a command to copy Ayat from the Quran. To use it, place the path of the `QuranCopy` directory in `Path` for System Variables.
 
 **How to use Quran Copy:**
 
