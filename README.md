@@ -2,7 +2,7 @@
 
 This is a command to copy Ayat from the Quran. To use it, place the path of the `QuranCopy` directory in `Path` for System Variables.
 
-**How to use Quran Copy:**
+## How to use:
 
 Pass a Surah number and an Ayah number to have the Ayah's Arabic Unicode text copied to clipboard.
 
