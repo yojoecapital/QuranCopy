@@ -2,7 +2,7 @@
 
 This is a command to copy Ayat from the Quran. 
 
-To use it, place the path of the `QuranCopy` directory in `Path` for System Variables.
+To access it easier, place the path of the `QuranCopy` directory in `Path` for System Variables.
 
 To recompile, use `csc -o quran.cs`.
 
