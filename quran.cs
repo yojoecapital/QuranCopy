@@ -133,7 +133,7 @@ static class Program
                         Console.WriteLine("Error: ayat not found");
                         return;
                     }
-                    Clipboard.SetText(string.Join("\n ", list.Select((XElement ayah) => (string)ayah.Attribute("Ayah"))));
+                    Clipboard.SetText(string.Join("\n", list.Select((XElement ayah) => (string)ayah.Attribute("Ayah") + " \u06DD ")));
                     Console.WriteLine("Copied ayat " + ayahNumber + " through " + endAyahNumber + " of surah " + (string)surah.Attribute("TransliterationName"));
                 }
                 else
