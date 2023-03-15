@@ -1,6 +1,10 @@
 # Quran Copy
 
-This is a command to copy Ayat from the Quran. To use it, place the path of the `QuranCopy` directory in `Path` for System Variables.
+This is a command to copy Ayat from the Quran. 
+
+To use it, place the path of the `QuranCopy` directory in `Path` for System Variables.
+
+To recompile, use `gcc -o surah-checker surah-checker.c`.
 
 ## How to use:
 
