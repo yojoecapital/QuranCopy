@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
 static class Program
 {
+#region File
     static readonly string surahsFileName = "surahs.xml";
 
     static readonly string ayatFileName = "ayat.xml";
+
+    static readonly string translationFileName = "translation.xml";
 
     private static string SurahsFilePath {
         get {
@@ -24,6 +28,13 @@ static class Program
         }
     }
 
+    private static string TranslationFilePath {
+        get{
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, translationFileName);
+        }
+    }
+
+
     private static IEnumerable<XElement> Surahs {
         get{
             return XDocument.Load(SurahsFilePath).Root.Elements();
@@ -36,6 +47,14 @@ static class Program
         }
     }
 
+    private static IEnumerable<XElement> Translation {
+        get {
+            return XDocument.Load(TranslationFilePath).Root.Elements();
+        }
+    }
+#endregion
+
+#region ClosestSurah
     private static int? FindClosestSurah(IEnumerable<XElement> surahs, string key)
     {
         int min = int.MaxValue;
@@ -88,16 +107,116 @@ static class Program
             }
             return null;
         }
-        IEnumerable<XElement> surahs = Surahs;
+        var surahs = Surahs;
         surahNumber = FindClosestSurah(surahs, arg).Value;
         return surahs.FirstOrDefault((XElement row) => int.Parse((string)row.Attribute("SurahId")) == surahNumber);
     }
+#endregion
 
+#region Search
+    public static string RemoveAccents(this string input)
+    {     
+        var stringBuilder = new StringBuilder();     
+        var chars = input.Normalize(NormalizationForm.FormD).ToCharArray();  
+        foreach (char letter in chars)
+        {     
+            if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)  
+                stringBuilder.Append(letter);     
+        }     
+        return stringBuilder.ToString();     
+    } 
+
+    private static IEnumerable<string> SearchAyat(string arg, int peek)
+    {
+        var surahs = Surahs;
+        foreach (var row in Ayat)
+        {
+            var text = ((string)row.Attribute("Ayah")).RemoveAccents();
+            var number = (string)row.Attribute("Number");
+            var index = text.IndexOf(arg);
+            if (index != -1)
+            {
+                var surahId = (string)row.Attribute("SurahId");
+                var surahName = (string)surahs.FirstOrDefault((XElement surahRow) => (string)surahRow.Attribute("SurahId") == surahId).Attribute("TransliterationName");
+                var ayah = "..." + text.Substring(index, Math.Min(peek, text.Length - index));
+                yield return "\"" + ayah + "\"\n\u2192 Ayah " + number + " from " + "(" + surahId + ") " + surahName + "\n";
+            }
+        }
+    }
+
+    private static IEnumerable<string> SearchTranslation(string arg, int peek)
+    {
+        var surahs = Surahs;
+        var ayat = Ayat;
+        foreach (var row in Translation)
+        {
+            var text = (string)row.Attribute("Translation");
+            var ayahId = (string)row.Attribute("AyahId");
+            var index = text.ToLower().IndexOf(arg);
+            if (index != -1)
+            {
+                var ayah = ayat.FirstOrDefault((XElement ayahRow) => (string)ayahRow.Attribute("AyahId") == ayahId);
+                var ayahText = ((string)ayah.Attribute("Ayah")).RemoveAccents();
+                ayahText = ayahText.Substring(0, Math.Min(peek, ayahText.Length));
+                var number = (string)ayah.Attribute("Number");
+                var surahId = (string)ayah.Attribute("SurahId");
+                var surahName = (string)surahs.FirstOrDefault((XElement surahRow) => (string)surahRow.Attribute("SurahId") == surahId).Attribute("TransliterationName");
+                var translation = text.Substring(index, Math.Min(peek, text.Length - index)) + "...";
+                yield return "\"" + translation + "\"\n\"" + ayahText + "\"\n\u2192 Ayah " + number + " from " + "(" + surahId + ") " + surahName + "\n";
+            }
+        }
+    }
+#endregion
     [STAThread]
     private static void Main(string[] args)
     {
         Console.OutputEncoding = Encoding.UTF8;
-        if (args.Length == 1)
+        if (args[0].Equals("ar?"))
+        {
+            if (args.Length > 1)
+            {
+                var list = args.ToList();
+                int peek = 15, result, count = 0;
+                list.RemoveAt(0);
+                if (args.Length > 2 && int.TryParse(args[1], out result)) {
+                    peek = result;
+                    list.RemoveAt(0);
+                }
+                var prompt = string.Join(" ", list);
+                prompt = prompt.RemoveAccents();
+                Console.WriteLine("Searching for: \"" + prompt + "\"");
+                foreach (var surahOffset in SearchAyat(prompt, peek))
+                {
+                    Console.WriteLine(surahOffset);
+                    count++;
+                }
+                Console.WriteLine(count + " result(s)");
+            }
+            else Console.WriteLine("Usage: quran.exe ar? <ayat search prompt>");
+        }
+        else if (args[0].Equals("en?"))
+        {
+            if (args.Length > 1)
+            {
+                var list = args.ToList();
+                int peek = 15, result, count = 0;
+                list.RemoveAt(0);
+                if (args.Length > 2 && int.TryParse(args[1], out result)) {
+                    peek = result;
+                    list.RemoveAt(0);
+                }
+                var prompt = string.Join(" ", list).ToLower();
+                Console.WriteLine("Searching for: \"" + prompt + "\"");
+                foreach (var surahOffset in SearchTranslation(prompt, peek))
+                {
+                    Console.WriteLine(surahOffset);
+                    count++;
+                }
+                Console.WriteLine(count + " result(s)");
+            }
+            else Console.WriteLine("Usage: quran.exe ae? <translation search prompt>");
+        }
+        else if (args.Length == 1)
         {
             XElement surah = GetSurah(args[0]);
             if (surah == null)
@@ -106,8 +225,7 @@ static class Program
                 return;
             }
             Clipboard.SetText((string)surah.Attribute("Name"));
-            Console.WriteLine((string)surah.Attribute("TransliterationName"));
-            Console.WriteLine("Surah Number: " + (string)surah.Attribute("SurahId"));
+            Console.WriteLine("(" + (string)surah.Attribute("SurahId") + ") " + (string)surah.Attribute("TransliterationName"));
             Console.WriteLine("Ayat Count: " + (string)surah.Attribute("AyahCount"));
         }
         else if (args.Length > 1)
@@ -124,19 +242,35 @@ static class Program
             {
                 int endAyahNumber;
                 ayahNumber = Math.Min(Math.Max(ayahNumber, 1), ayahCount);
-                if (args.Length > 2 && int.TryParse(args[2], out endAyahNumber) && ayahNumber <= endAyahNumber)
+                if (args.Length > 2 && int.TryParse(args[2], out endAyahNumber) && ayahNumber <= endAyahNumber) // multi-line copy
                 {
                     endAyahNumber = Math.Min(endAyahNumber, ayahCount);
-                    List<XElement> list = Ayat.Where((XElement row) => surahNumber.Equals((string)row.Attribute("SurahId")) && ayahNumber <= int.Parse((string)row.Attribute("Number")) && endAyahNumber >= int.Parse((string)row.Attribute("Number"))).ToList();
-                    if (list == null || list.Count == 0)
-                    {
-                        Console.WriteLine("Error: ayat not found");
-                        return;
+                    string copy, withTranslation = string.Empty;
+                    if (args.Length > 3 && args[3].Equals("t")) {
+                        var list = Ayat.Join(Translation, ayahRow => int.Parse((string)ayahRow.Attribute("AyahId")), translationRow => int.Parse((string)translationRow.Attribute("AyahId")), 
+                        (ayahRow, translationRow) => new { 
+                            Ayah = (string)ayahRow.Attribute("Ayah"), 
+                            Translation = (string)translationRow.Attribute("Translation"),
+                            SurahId = (string)ayahRow.Attribute("SurahId"),
+                            Number = int.Parse((string)ayahRow.Attribute("Number")) }).Where(row => surahNumber.Equals(row.SurahId) && ayahNumber <= row.Number && endAyahNumber >= row.Number).ToList();
+                        if (list == null || list.Count == 0) {
+                            Console.WriteLine("Error: ayat not found");
+                            return;
+                        }
+                        withTranslation = " with translation";
+                        copy = string.Join("\n", list.Select(row => row.Ayah + " \u06DD\n" + row.Translation));
+                    } else {
+                        var list = Ayat.Where((XElement row) => surahNumber.Equals((string)row.Attribute("SurahId")) && ayahNumber <= int.Parse((string)row.Attribute("Number")) && endAyahNumber >= int.Parse((string)row.Attribute("Number"))).ToList();
+                        if (list == null || list.Count == 0) {
+                            Console.WriteLine("Error: ayat not found");
+                            return;
+                        }
+                        copy = string.Join("\n", list.Select((XElement ayah) => (string)ayah.Attribute("Ayah") + " \u06DD "));
                     }
-                    Clipboard.SetText(string.Join("\n", list.Select((XElement ayah) => (string)ayah.Attribute("Ayah") + " \u06DD ")));
-                    Console.WriteLine("Copied ayat " + ayahNumber + " through " + endAyahNumber + " of surah " + (string)surah.Attribute("TransliterationName"));
+                    Clipboard.SetText(copy);
+                    Console.WriteLine("Copied ayat " + ayahNumber + " through " + endAyahNumber + " of (" + (string)surah.Attribute("SurahId") + ") " + (string)surah.Attribute("TransliterationName") + withTranslation);
                 }
-                else
+                else // single-line copy
                 {
                     XElement xElement = Ayat.FirstOrDefault((XElement row) => surahNumber.Equals((string)row.Attribute("SurahId")) && ayahNumber == int.Parse((string)row.Attribute("Number")));
                     if (xElement == null)
@@ -144,15 +278,21 @@ static class Program
                         Console.WriteLine("Error: ayah not found");
                         return;
                     }
-                    Clipboard.SetText((string)xElement.Attribute("Ayah"));
-                    Console.WriteLine("Copied ayah " + ayahNumber + " of surah " + (string)surah.Attribute("TransliterationName"));
+                    if (args.Length > 2 && args[2].Equals("t")) {
+                        var ayahId = (string)xElement.Attribute("AyahId");
+                        var translation = (string)Translation.FirstOrDefault((XElement row) => ayahId.Equals((string)row.Attribute("AyahId"))).Attribute("Translation");
+                        Clipboard.SetText((string)xElement.Attribute("Ayah") + "\n" + translation);
+                        Console.WriteLine("Copied ayah " + ayahNumber + " of (" + (string)surah.Attribute("SurahId") + ") " + (string)surah.Attribute("TransliterationName") + " with translation");
+                    } else {
+                        Clipboard.SetText((string)xElement.Attribute("Ayah"));
+                        Console.WriteLine("Copied ayah " + ayahNumber + " of (" + (string)surah.Attribute("SurahId") + ") " + (string)surah.Attribute("TransliterationName"));
+                    }
                 }
             }
             else
             {
                 Clipboard.SetText((string)surah.Attribute("Name"));
-                Console.WriteLine((string)surah.Attribute("TransliterationName"));
-                Console.WriteLine("Surah Number: " + (string)surah.Attribute("SurahId"));
+                Console.WriteLine("(" + (string)surah.Attribute("SurahId") + ") " + (string)surah.Attribute("TransliterationName"));
                 Console.WriteLine("Ayat Count: " + (string)surah.Attribute("AyahCount"));
             }
         }
