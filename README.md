@@ -68,16 +68,22 @@ Copied ayat 1 through 6 of (114) An-Naas with translation
 > This copies Ayat 1 through 6 of An-Naas with its translation:
 >
 > بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ ۝
+>
 > Say, "I seek refuge in the Lord of people,
 > مَلِكِ ٱلنَّاسِ ۝
+>
 > the King of people,
 > إِلَـٰهِ ٱلنَّاسِ ۝
+>
 > the God of people,
 > مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ۝
+>
 > from the mischief of every sneaking whis-perer,
 > ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ ۝
+>
 > who whispers into the hearts of people,
 > مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ ۝
+>
 > from jinn and men."
 
 ## How to Search:
