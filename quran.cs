@@ -157,7 +157,7 @@ static class Program
             {
                 var ayah = ayat.FirstOrDefault((XElement ayahRow) => (string)ayahRow.Attribute("AyahId") == ayahId);
                 var ayahText = ((string)ayah.Attribute("Ayah")).RemoveAccents();
-                ayahText = ayahText.Substring(0, Math.Min(peek, ayahText.Length));
+                ayahText = "..." + ayahText.Substring(0, Math.Min(peek, ayahText.Length));
                 var number = (string)ayah.Attribute("Number");
                 var surahId = (string)ayah.Attribute("SurahId");
                 var surahName = (string)surahs.FirstOrDefault((XElement surahRow) => (string)surahRow.Attribute("SurahId") == surahId).Attribute("TransliterationName");
@@ -176,7 +176,7 @@ static class Program
             if (args.Length > 1)
             {
                 var list = args.ToList();
-                int peek = 15, result, count = 0;
+                int peek = 20, result, count = 0;
                 list.RemoveAt(0);
                 if (args.Length > 2 && int.TryParse(args[1], out result)) {
                     peek = result;
@@ -199,7 +199,7 @@ static class Program
             if (args.Length > 1)
             {
                 var list = args.ToList();
-                int peek = 15, result, count = 0;
+                int peek = 20, result, count = 0;
                 list.RemoveAt(0);
                 if (args.Length > 2 && int.TryParse(args[1], out result)) {
                     peek = result;
