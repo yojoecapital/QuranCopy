@@ -126,6 +126,15 @@ static class Program
         return stringBuilder.ToString();     
     } 
 
+    
+    private static string Peekify(this string text, int index, int peek, bool rtl = false)
+    {
+        if (peek < text.Length - index) {
+            if (rtl) return "\"..." + text.Substring(index, peek).Replace("\"", "'") + "\"";
+            return "\"" + text.Substring(index, peek).Replace("\"", "'") + "...\"";
+        } else return "\"" + text.Substring(index, text.Length - index).Replace("\"", "'") + "\"";
+    }
+
     private static IEnumerable<string> SearchAyat(string arg, int peek)
     {
         var surahs = Surahs;
@@ -138,8 +147,8 @@ static class Program
             {
                 var surahId = (string)row.Attribute("SurahId");
                 var surahName = (string)surahs.FirstOrDefault((XElement surahRow) => (string)surahRow.Attribute("SurahId") == surahId).Attribute("TransliterationName");
-                var ayah = "..." + text.Substring(index, Math.Min(peek, text.Length - index));
-                yield return "\"" + ayah + "\"\n\u2192 Ayah " + number + " from " + "(" + surahId + ") " + surahName + "\n";
+                var ayah = text.Peekify(index, peek, true);
+                yield return ayah + "\n\u2192 Ayah " + number + " from " + "(" + surahId + ") " + surahName + "\n";
             }
         }
     }
@@ -157,12 +166,12 @@ static class Program
             {
                 var ayah = ayat.FirstOrDefault((XElement ayahRow) => (string)ayahRow.Attribute("AyahId") == ayahId);
                 var ayahText = ((string)ayah.Attribute("Ayah")).RemoveAccents();
-                ayahText = "..." + ayahText.Substring(0, Math.Min(peek, ayahText.Length));
+                ayahText = ayahText.Peekify(0, peek, true);
                 var number = (string)ayah.Attribute("Number");
                 var surahId = (string)ayah.Attribute("SurahId");
                 var surahName = (string)surahs.FirstOrDefault((XElement surahRow) => (string)surahRow.Attribute("SurahId") == surahId).Attribute("TransliterationName");
-                var translation = text.Substring(index, Math.Min(peek, text.Length - index)) + "...";
-                yield return "\"" + translation + "\"\n\"" + ayahText + "\"\n\u2192 Ayah " + number + " from " + "(" + surahId + ") " + surahName + "\n";
+                var translation = text.Peekify(index, peek);
+                yield return translation + "\n" + ayahText + "\n\u2192 Ayah " + number + " from " + "(" + surahId + ") " + surahName + "\n";
             }
         }
     }
