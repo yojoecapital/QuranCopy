@@ -135,52 +135,42 @@ static class Program
         } else return "\"" + text.Substring(index, text.Length - index).Replace("\"", "'") + "\"";
     }
 
-    private static IEnumerable<string> SearchAyat(string arg, int peek)
+    private static IEnumerable<string> Search(string arg, int peek, bool searchTranslation)
     {
         var surahs = Surahs;
-        foreach (var row in Ayat)
+        var iterator = Ayat.Join(Translation, ayahRow => int.Parse((string)ayahRow.Attribute("AyahId")), translationRow => int.Parse((string)translationRow.Attribute("AyahId")), 
+                        (ayahRow, translationRow) => new { 
+                        Ayah = (string)ayahRow.Attribute("Ayah"), 
+                        Translation = (string)translationRow.Attribute("Translation"),
+                        SurahId = (string)ayahRow.Attribute("SurahId"),
+                        Number = int.Parse((string)ayahRow.Attribute("Number")) });
+        foreach (var row in iterator)
         {
-            var text = ((string)row.Attribute("Ayah")).RemoveAccents();
-            var number = (string)row.Attribute("Number");
+            var number = row.Number;
+            var text = searchTranslation ? row.Translation.ToLower() : row.Ayah.RemoveAccents();
             var index = text.IndexOf(arg);
             if (index != -1)
             {
-                var surahId = (string)row.Attribute("SurahId");
-                var surahName = (string)surahs.FirstOrDefault((XElement surahRow) => (string)surahRow.Attribute("SurahId") == surahId).Attribute("TransliterationName");
-                var ayah = text.Peekify(index, peek, true);
-                yield return ayah + "\n\u2192 Ayah " + number + " from " + "(" + surahId + ") " + surahName + "\n";
-            }
-        }
-    }
-
-    private static IEnumerable<string> SearchTranslation(string arg, int peek)
-    {
-        var surahs = Surahs;
-        var ayat = Ayat;
-        foreach (var row in Translation)
-        {
-            var text = (string)row.Attribute("Translation");
-            var ayahId = (string)row.Attribute("AyahId");
-            var index = text.ToLower().IndexOf(arg);
-            if (index != -1)
-            {
-                var ayah = ayat.FirstOrDefault((XElement ayahRow) => (string)ayahRow.Attribute("AyahId") == ayahId);
-                var ayahText = ((string)ayah.Attribute("Ayah")).RemoveAccents();
-                ayahText = ayahText.Peekify(0, peek, true);
-                var number = (string)ayah.Attribute("Number");
-                var surahId = (string)ayah.Attribute("SurahId");
-                var surahName = (string)surahs.FirstOrDefault((XElement surahRow) => (string)surahRow.Attribute("SurahId") == surahId).Attribute("TransliterationName");
-                var translation = text.Peekify(index, peek);
-                yield return translation + "\n" + ayahText + "\n\u2192 Ayah " + number + " from " + "(" + surahId + ") " + surahName + "\n";
+                var surahId = row.SurahId;
+                var surahName = (string)surahs.FirstOrDefault((XElement surahRow) => ((string)surahRow.Attribute("SurahId")).Equals(surahId)).Attribute("TransliterationName");
+                string ayah, translation;
+                if (searchTranslation){
+                    ayah = row.Ayah.RemoveAccents().Peekify(0, peek, true);
+                    translation = text.Peekify(index, peek, false);
+                } else {
+                    ayah = text.Peekify(index, peek, true);
+                    translation = row.Translation.Peekify(0, peek, false);
+                }
+                yield return ayah + "\n" + translation + "\n\u2192 Ayah " + number + " from " + "(" + surahId + ") " + surahName + "\n";
             }
         }
     }
 #endregion
-    [STAThread]
-    private static void Main(string[] args)
+
+    private static void ProcessArgs(string[] args)
     {
-        Console.OutputEncoding = Encoding.UTF8;
-        if (args[0].Equals("ar?"))
+        bool searchAyah = false, searchTranslation = false;
+        if ((searchAyah = args[0].Equals("ar?")) || (searchTranslation = args[0].Equals("en?")))
         {
             if (args.Length > 1)
             {
@@ -192,38 +182,16 @@ static class Program
                     list.RemoveAt(0);
                 }
                 var prompt = string.Join(" ", list);
-                prompt = prompt.RemoveAccents();
+                if (searchAyah) prompt = prompt.RemoveAccents();
                 Console.WriteLine("Searching for: \"" + prompt + "\"");
-                foreach (var surahOffset in SearchAyat(prompt, peek))
+                foreach (var searchResult in Search(prompt, peek, searchTranslation))
                 {
-                    Console.WriteLine(surahOffset);
+                    Console.WriteLine(searchResult);
                     count++;
                 }
                 Console.WriteLine(count + " result(s)");
             }
             else Console.WriteLine("Usage: quran.exe ar? <ayat search prompt>");
-        }
-        else if (args[0].Equals("en?"))
-        {
-            if (args.Length > 1)
-            {
-                var list = args.ToList();
-                int peek = 20, result, count = 0;
-                list.RemoveAt(0);
-                if (args.Length > 2 && int.TryParse(args[1], out result)) {
-                    peek = result;
-                    list.RemoveAt(0);
-                }
-                var prompt = string.Join(" ", list).ToLower();
-                Console.WriteLine("Searching for: \"" + prompt + "\"");
-                foreach (var surahOffset in SearchTranslation(prompt, peek))
-                {
-                    Console.WriteLine(surahOffset);
-                    count++;
-                }
-                Console.WriteLine(count + " result(s)");
-            }
-            else Console.WriteLine("Usage: quran.exe ae? <translation search prompt>");
         }
         else if (args.Length == 1)
         {
@@ -308,6 +276,26 @@ static class Program
         else
         {
             Console.WriteLine("Usage: quran.exe <surah number> <ayah number>");
+        }
+    }
+
+    [STAThread]
+    private static void Main(string[] args)
+    {
+        Console.OutputEncoding = Encoding.UTF8;
+        if (args.Length > 0)
+            ProcessArgs(args);
+        else
+        {
+            string input;
+            while (true)
+            {
+                Console.Write("> ");
+                input = Console.ReadLine();
+                if (input == "q" || input == "quit") return;
+                var argsArray = input.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
+                ProcessArgs(argsArray);
+            }
         }
     }
 }

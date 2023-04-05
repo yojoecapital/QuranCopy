@@ -4,7 +4,7 @@ This is a command to copy Ayat from the Quran.
 
 To access it easier, place the path of the `QuranCopy` directory in `Path` for System Variables.
 
-To recompile, use `csc -o quran.cs`.
+To recompile, use `csc quran.cs`.
 
 ## How to Copy:
 
@@ -12,6 +12,7 @@ Pass a Surah number and an Ayah number to have the Ayah's Arabic Unicode text co
 
 ```
 $ quran 18 1
+Copied ayah 1 of (18) Al-Kahf
 ```
 
 This copies Ayah 1 of Al-Kahf:
@@ -22,8 +23,7 @@ Pass a Surah name to get its metadata. If the spelling is not correct, the close
 
 ```
 $ quran al-mlk
-Al-Mulk
-Surah Number: 67
+(67) Al-Mulk
 Ayat Count: 30
 ```
 
@@ -31,7 +31,7 @@ Pass a Surah name and an Ayah number to have the Ayah's Arabic Unicode text copi
 
 ```
 $ quran al-mlk 3
-Copied ayah 3 of surah Al-Mulk
+Copied ayah 3 of (67) Al-Mulk
 ```
 
 This copies Ayah 3 of Al-Mulk:
@@ -42,21 +42,30 @@ Pass a Surah name (or number) as well as a start Ayah number and an end Ayah Num
 
 ```
 $ quran al-mlk 1 10
-Copied ayat 1 through 10 of surah Al-Mulk
+Copied ayat 1 through 10 of (67) Al-Mulk
 ```
 
 > This copies Ayat 1 through 10 of Al-Mulk:
 >
 > بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ تَبَـٰرَكَ ٱلَّذِى بِيَدِهِ ٱلْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَىْءٍ قَدِيرٌ ۝ 
->  ٱلَّذِى خَلَقَ ٱلْمَوْتَ وَٱلْحَيَوٰةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا ۚ وَهُوَ ٱلْعَزِيزُ ٱلْغَفُورُ ۝ 
->  ٱلَّذِى خَلَقَ سَبْعَ سَمَـٰوَٰتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِى خَلْقِ ٱلرَّحْمَـٰنِ مِن تَفَـٰوُتٍ ۖ فَٱرْجِعِ ٱلْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ ۝ 
->  ثُمَّ ٱرْجِعِ ٱلْبَصَرَ كَرَّتَيْنِ يَنقَلِبْ إِلَيْكَ ٱلْبَصَرُ خَاسِئًا وَهُوَ حَسِيرٌ ۝ 
->  وَلَقَدْ زَيَّنَّا ٱلسَّمَآءَ ٱلدُّنْيَا بِمَصَـٰبِيحَ وَجَعَلْنَـٰهَا رُجُومًا لِّلشَّيَـٰطِينِ ۖ وَأَعْتَدْنَا لَهُمْ عَذَابَ ٱلسَّعِيرِ ۝ 
->  وَلِلَّذِينَ كَفَرُوا۟ بِرَبِّهِمْ عَذَابُ جَهَنَّمَ ۖ وَبِئْسَ ٱلْمَصِيرُ ۝ 
->  إِذَآ أُلْقُوا۟ فِيهَا سَمِعُوا۟ لَهَا شَهِيقًا وَهِىَ تَفُورُ ۝ 
->  تَكَادُ تَمَيَّزُ مِنَ ٱلْغَيْظِ ۖ كُلَّمَآ أُلْقِىَ فِيهَا فَوْجٌ سَأَلَهُمْ خَزَنَتُهَآ أَلَمْ يَأْتِكُمْ نَذِيرٌ ۝ 
->  قَالُوا۟ بَلَىٰ قَدْ جَآءَنَا نَذِيرٌ فَكَذَّبْنَا وَقُلْنَا مَا نَزَّلَ ٱللَّهُ مِن شَىْءٍ إِنْ أَنتُمْ إِلَّا فِى ضَلَـٰلٍ كَبِيرٍ ۝ 
->  وَقَالُوا۟ لَوْ كُنَّا نَسْمَعُ أَوْ نَعْقِلُ مَا كُنَّا فِىٓ أَصْحَـٰبِ ٱلسَّعِيرِ ۝ 
+>
+> ٱلَّذِى خَلَقَ ٱلْمَوْتَ وَٱلْحَيَوٰةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا ۚ وَهُوَ ٱلْعَزِيزُ ٱلْغَفُورُ ۝ 
+>
+> ٱلَّذِى خَلَقَ سَبْعَ سَمَـٰوَٰتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِى خَلْقِ ٱلرَّحْمَـٰنِ مِن تَفَـٰوُتٍ ۖ فَٱرْجِعِ ٱلْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ ۝ 
+>
+> ثُمَّ ٱرْجِعِ ٱلْبَصَرَ كَرَّتَيْنِ يَنقَلِبْ إِلَيْكَ ٱلْبَصَرُ خَاسِئًا وَهُوَ حَسِيرٌ ۝ 
+>
+> وَلَقَدْ زَيَّنَّا ٱلسَّمَآءَ ٱلدُّنْيَا بِمَصَـٰبِيحَ وَجَعَلْنَـٰهَا رُجُومًا لِّلشَّيَـٰطِينِ ۖ وَأَعْتَدْنَا لَهُمْ عَذَابَ ٱلسَّعِيرِ ۝ 
+>
+> وَلِلَّذِينَ كَفَرُوا۟ بِرَبِّهِمْ عَذَابُ جَهَنَّمَ ۖ وَبِئْسَ ٱلْمَصِيرُ ۝ 
+>
+> إِذَآ أُلْقُوا۟ فِيهَا سَمِعُوا۟ لَهَا شَهِيقًا وَهِىَ تَفُورُ ۝ 
+>
+> تَكَادُ تَمَيَّزُ مِنَ ٱلْغَيْظِ ۖ كُلَّمَآ أُلْقِىَ فِيهَا فَوْجٌ سَأَلَهُمْ خَزَنَتُهَآ أَلَمْ يَأْتِكُمْ نَذِيرٌ ۝ 
+>
+> قَالُوا۟ بَلَىٰ قَدْ جَآءَنَا نَذِيرٌ فَكَذَّبْنَا وَقُلْنَا مَا نَزَّلَ ٱللَّهُ مِن شَىْءٍ إِنْ أَنتُمْ إِلَّا فِى ضَلَـٰلٍ كَبِيرٍ ۝ 
+>
+> وَقَالُوا۟ لَوْ كُنَّا نَسْمَعُ أَوْ نَعْقِلُ مَا كُنَّا فِىٓ أَصْحَـٰبِ ٱلسَّعِيرِ ۝ 
 
 Add the last argument `t` to also copy the translation.
 
@@ -68,16 +77,27 @@ Copied ayat 1 through 6 of (114) An-Naas with translation
 > This copies Ayat 1 through 6 of An-Naas with its translation:
 >
 > بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ ۝
+>
 > Say, "I seek refuge in the Lord of people,
+>
 > مَلِكِ ٱلنَّاسِ ۝
+>
 > the King of people,
+>
 > إِلَـٰهِ ٱلنَّاسِ ۝
+>
 > the God of people,
+>
 > مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ ۝
+>
 > from the mischief of every sneaking whis-perer,
+>
 > ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ ۝
+>
 > who whispers into the hearts of people,
+>
 > مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ ۝
+>
 > from jinn and men."
 
 ## How to Search:
@@ -114,4 +134,4 @@ Searching for: "calf"
 11 result(s)
 ```
 
-Add a numerical argument after the `en?` or `ar?` to specify the maximum characters that should be displayed on the console.
+Add a numerical argument after the `en?` or `ar?` to specify the maximum characters that should be displayed on the console in each search result.
