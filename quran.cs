@@ -292,7 +292,12 @@ static class Program
             {
                 Console.Write("> ");
                 input = Console.ReadLine();
-                if (input == "q" || input == "quit") return;
+                if (input.Equals("cls")) 
+                {
+                    Console.Clear();
+                    continue;
+                }
+                else if (input.Equals("q") || input.Equals("quit")) return;
                 var argsArray = input.Split(new char[]{' '}, StringSplitOptions.RemoveEmptyEntries);
                 ProcessArgs(argsArray);
             }
