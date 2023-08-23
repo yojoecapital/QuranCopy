@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root test="1">
+	<row SurahId="1" AyahCount="7" AyahId="1" Name="الفاتحة" TransliterationName="Al-Faatiha" EnglishName="The Opening"/>
+	<row SurahId="2" AyahCount="286" AyahId="8" Name="البقرة" TransliterationName="Al-Baqara" EnglishName="The Cow"/>
+	<row SurahId="3" AyahCount="200" AyahId="294" Name="آل عمران" TransliterationName="Aal-i-Imraan" EnglishName="The Family of Imraan"/>
+	<row SurahId="4" AyahCount="176" AyahId="494" Name="النساء" TransliterationName="An-Nisaa" EnglishName="The Women"/>
+	<row SurahId="5" AyahCount="120" AyahId="670" Name="المائدة" TransliterationName="Al-Maaida" EnglishName="The Table"/>
+	<row SurahId="6" AyahCount="165" AyahId="790" Name="الأنعام" TransliterationName="Al-Anaam" EnglishName="The Cattle"/>
+	<row SurahId="7" AyahCount="206" AyahId="955" Name="الأعراف" TransliterationName="Al-Araaf" EnglishName="The Heights"/>
+	<row SurahId="8" AyahCount="75" AyahId="1161" Name="الأنفال" TransliterationName="Al-Anfaal" EnglishName="The Spoils of War"/>
+	<row SurahId="9" AyahCount="129" AyahId="1236" Name="التوبة" TransliterationName="At-Tawba" EnglishName="The Repentance"/>
+	<row SurahId="10" AyahCount="109" AyahId="1365" Name="يونس" TransliterationName="Yunus" EnglishName="Jonas"/>
+	<row SurahId="11" AyahCount="123" AyahId="1474" Name="هود" TransliterationName="Hud" EnglishName="Hud"/>
+	<row SurahId="12" AyahCount="111" AyahId="1597" Name="يوسف" TransliterationName="Yusuf" EnglishName="Joseph"/>
+	<row SurahId="13" AyahCount="43" AyahId="1708" Name="الرعد" TransliterationName="Ar-Rad" EnglishName="The Thunder"/>
+	<row SurahId="14" AyahCount="52" AyahId="1751" Name="ابراهيم" TransliterationName="Ibrahim" EnglishName="Abraham"/>
+	<row SurahId="15" AyahCount="99" AyahId="1803" Name="الحجر" TransliterationName="Al-Hijr" EnglishName="The Rock"/>
+	<row SurahId="16" AyahCount="128" AyahId="1902" Name="النحل" TransliterationName="An-Nahl" EnglishName="The Bee"/>
+	<row SurahId="17" AyahCount="111" AyahId="2030" Name="الإسراء" TransliterationName="Al-Israa" EnglishName="The Night Journey"/>
+	<row SurahId="18" AyahCount="110" AyahId="2141" Name="الكهف" TransliterationName="Al-Kahf" EnglishName="The Cave"/>
+	<row SurahId="19" AyahCount="98" AyahId="2251" Name="مريم" TransliterationName="Maryam" EnglishName="Mary"/>
+	<row SurahId="20" AyahCount="135" AyahId="2349" Name="طه" TransliterationName="Taa-Haa" EnglishName="Taa-Haa"/>
+	<row SurahId="21" AyahCount="112" AyahId="2484" Name="الأنبياء" TransliterationName="Al-Anbiyaa" EnglishName="The Prophets"/>
+	<row SurahId="22" AyahCount="78" AyahId="2596" Name="الحج" TransliterationName="Al-Hajj" EnglishName="The Pilgrimage"/>
+	<row SurahId="23" AyahCount="118" AyahId="2674" Name="المؤمنون" TransliterationName="Al-Muminoon" EnglishName="The Believers"/>
+	<row SurahId="24" AyahCount="64" AyahId="2792" Name="النور" TransliterationName="An-Noor" EnglishName="The Light"/>
+	<row SurahId="25" AyahCount="77" AyahId="2856" Name="الفرقان" TransliterationName="Al-Furqaan" EnglishName="The Criterion"/>
+	<row SurahId="26" AyahCount="227" AyahId="2933" Name="الشعراء" TransliterationName="Ash-Shuaraa" EnglishName="The Poets"/>
+	<row SurahId="27" AyahCount="93" AyahId="3160" Name="النمل" TransliterationName="An-Naml" EnglishName="The Ant"/>
+	<row SurahId="28" AyahCount="88" AyahId="3253" Name="القصص" TransliterationName="Al-Qasas" EnglishName="The Stories"/>
+	<row SurahId="29" AyahCount="69" AyahId="3341" Name="العنكبوت" TransliterationName="Al-Ankaboot" EnglishName="The Spider"/>
+	<row SurahId="30" AyahCount="60" AyahId="3410" Name="الروم" TransliterationName="Ar-Room" EnglishName="The Romans"/>
+	<row SurahId="31" AyahCount="34" AyahId="3470" Name="لقمان" TransliterationName="Luqman" EnglishName="Luqman"/>
+	<row SurahId="32" AyahCount="30" AyahId="3504" Name="السجدة" TransliterationName="As-Sajda" EnglishName="The Prostration"/>
+	<row SurahId="33" AyahCount="73" AyahId="3534" Name="الأحزاب" TransliterationName="Al-Ahzaab" EnglishName="The Clans"/>
+	<row SurahId="34" AyahCount="54" AyahId="3607" Name="سبإ" TransliterationName="Saba" EnglishName="Sheba"/>
+	<row SurahId="35" AyahCount="45" AyahId="3661" Name="فاطر" TransliterationName="Faatir" EnglishName="The Originator"/>
+	<row SurahId="36" AyahCount="83" AyahId="3706" Name="يس" TransliterationName="Yaseen" EnglishName="Yaseen"/>
+	<row SurahId="37" AyahCount="182" AyahId="3789" Name="الصافات" TransliterationName="As-Saaffaat" EnglishName="Those drawn up in Ranks"/>
+	<row SurahId="38" AyahCount="88" AyahId="3971" Name="ص" TransliterationName="Saad" EnglishName="The letter Saad"/>
+	<row SurahId="39" AyahCount="75" AyahId="4059" Name="الزمر" TransliterationName="Az-Zumar" EnglishName="The Groups"/>
+	<row SurahId="40" AyahCount="85" AyahId="4134" Name="غافر" TransliterationName="Al-Ghaafir" EnglishName="The Forgiver"/>
+	<row SurahId="41" AyahCount="54" AyahId="4219" Name="فصلت" TransliterationName="Fussilat" EnglishName="Explained in detail"/>
+	<row SurahId="42" AyahCount="53" AyahId="4273" Name="الشورى" TransliterationName="Ash-Shura" EnglishName="Consultation"/>
+	<row SurahId="43" AyahCount="89" AyahId="4326" Name="الزخرف" TransliterationName="Az-Zukhruf" EnglishName="Ornaments of gold"/>
+	<row SurahId="44" AyahCount="59" AyahId="4415" Name="الدخان" TransliterationName="Ad-Dukhaan" EnglishName="The Smoke"/>
+	<row SurahId="45" AyahCount="37" AyahId="4474" Name="الجاثية" TransliterationName="Al-Jaathiya" EnglishName="Crouching"/>
+	<row SurahId="46" AyahCount="35" AyahId="4511" Name="الأحقاف" TransliterationName="Al-Ahqaf" EnglishName="The Dunes"/>
+	<row SurahId="47" AyahCount="38" AyahId="4546" Name="محمد" TransliterationName="Muhammad" EnglishName="Muhammad"/>
+	<row SurahId="48" AyahCount="29" AyahId="4584" Name="الفتح" TransliterationName="Al-Fath" EnglishName="The Victory"/>
+	<row SurahId="49" AyahCount="18" AyahId="4613" Name="الحجرات" TransliterationName="Al-Hujuraat" EnglishName="The Inner Apartments"/>
+	<row SurahId="50" AyahCount="45" AyahId="4631" Name="ق" TransliterationName="Qaaf" EnglishName="The letter Qaaf"/>
+	<row SurahId="51" AyahCount="60" AyahId="4676" Name="الذاريات" TransliterationName="Adh-Dhaariyat" EnglishName="The Winnowing Winds"/>
+	<row SurahId="52" AyahCount="49" AyahId="4736" Name="الطور" TransliterationName="At-Tur" EnglishName="The Mount"/>
+	<row SurahId="53" AyahCount="62" AyahId="4785" Name="النجم" TransliterationName="An-Najm" EnglishName="The Star"/>
+	<row SurahId="54" AyahCount="55" AyahId="4847" Name="القمر" TransliterationName="Al-Qamar" EnglishName="The Moon"/>
+	<row SurahId="55" AyahCount="78" AyahId="4902" Name="الرحمن" TransliterationName="Ar-Rahmaan" EnglishName="The Beneficent"/>
+	<row SurahId="56" AyahCount="96" AyahId="4980" Name="الواقعة" TransliterationName="Al-Waaqia" EnglishName="The Inevitable"/>
+	<row SurahId="57" AyahCount="29" AyahId="5076" Name="الحديد" TransliterationName="Al-Hadid" EnglishName="The Iron"/>
+	<row SurahId="58" AyahCount="22" AyahId="5105" Name="المجادلة" TransliterationName="Al-Mujaadila" EnglishName="The Pleading Woman"/>
+	<row SurahId="59" AyahCount="24" AyahId="5127" Name="الحشر" TransliterationName="Al-Hashr" EnglishName="The Exile"/>
+	<row SurahId="60" AyahCount="13" AyahId="5151" Name="الممتحنة" TransliterationName="Al-Mumtahana" EnglishName="She that is to be examined"/>
+	<row SurahId="61" AyahCount="14" AyahId="5164" Name="الصف" TransliterationName="As-Saff" EnglishName="The Ranks"/>
+	<row SurahId="62" AyahCount="11" AyahId="5178" Name="الجمعة" TransliterationName="Al-Jumua" EnglishName="Friday"/>
+	<row SurahId="63" AyahCount="11" AyahId="5189" Name="المنافقون" TransliterationName="Al-Munaafiqoon" EnglishName="The Hypocrites"/>
+	<row SurahId="64" AyahCount="18" AyahId="5200" Name="التغابن" TransliterationName="At-Taghaabun" EnglishName="Mutual Disillusion"/>
+	<row SurahId="65" AyahCount="12" AyahId="5218" Name="الطلاق" TransliterationName="At-Talaaq" EnglishName="Divorce"/>
+	<row SurahId="66" AyahCount="12" AyahId="5230" Name="التحريم" TransliterationName="At-Tahrim" EnglishName="The Prohibition"/>
+	<row SurahId="67" AyahCount="30" AyahId="5242" Name="الملك" TransliterationName="Al-Mulk" EnglishName="The Sovereignty"/>
+	<row SurahId="68" AyahCount="52" AyahId="5272" Name="القلم" TransliterationName="Al-Qalam" EnglishName="The Pen"/>
+	<row SurahId="69" AyahCount="52" AyahId="5324" Name="الحاقة" TransliterationName="Al-Haaqqa" EnglishName="The Reality"/>
+	<row SurahId="70" AyahCount="44" AyahId="5376" Name="المعارج" TransliterationName="Al-Maaarij" EnglishName="The Ascending Stairways"/>
+	<row SurahId="71" AyahCount="28" AyahId="5420" Name="نوح" TransliterationName="Nooh" EnglishName="Noah"/>
+	<row SurahId="72" AyahCount="28" AyahId="5448" Name="الجن" TransliterationName="Al-Jinn" EnglishName="The Jinn"/>
+	<row SurahId="73" AyahCount="20" AyahId="5476" Name="المزمل" TransliterationName="Al-Muzzammil" EnglishName="The Enshrouded One"/>
+	<row SurahId="74" AyahCount="56" AyahId="5496" Name="المدثر" TransliterationName="Al-Muddaththir" EnglishName="The Cloaked One"/>
+	<row SurahId="75" AyahCount="40" AyahId="5552" Name="القيامة" TransliterationName="Al-Qiyaama" EnglishName="The Resurrection"/>
+	<row SurahId="76" AyahCount="31" AyahId="5592" Name="الانسان" TransliterationName="Al-Insaan" EnglishName="Man"/>
+	<row SurahId="77" AyahCount="50" AyahId="5623" Name="المرسلات" TransliterationName="Al-Mursalaat" EnglishName="The Emissaries"/>
+	<row SurahId="78" AyahCount="40" AyahId="5673" Name="النبإ" TransliterationName="An-Naba" EnglishName="The Announcement"/>
+	<row SurahId="79" AyahCount="46" AyahId="5713" Name="النازعات" TransliterationName="An-Naaziaat" EnglishName="Those who drag forth"/>
+	<row SurahId="80" AyahCount="42" AyahId="5759" Name="عبس" TransliterationName="Abasa" EnglishName="He frowned"/>
+	<row SurahId="81" AyahCount="29" AyahId="5801" Name="التكوير" TransliterationName="At-Takwir" EnglishName="The Overthrowing"/>
+	<row SurahId="82" AyahCount="19" AyahId="5830" Name="الإنفطار" TransliterationName="Al-Infitaar" EnglishName="The Cleaving"/>
+	<row SurahId="83" AyahCount="36" AyahId="5849" Name="المطففين" TransliterationName="Al-Mutaffifin" EnglishName="Defrauding"/>
+	<row SurahId="84" AyahCount="25" AyahId="5885" Name="الإنشقاق" TransliterationName="Al-Inshiqaaq" EnglishName="The Splitting Open"/>
+	<row SurahId="85" AyahCount="22" AyahId="5910" Name="البروج" TransliterationName="Al-Burooj" EnglishName="The Constellations"/>
+	<row SurahId="86" AyahCount="17" AyahId="5932" Name="الطارق" TransliterationName="At-Taariq" EnglishName="The Morning Star"/>
+	<row SurahId="87" AyahCount="19" AyahId="5949" Name="الأعلى" TransliterationName="Al-Alaa" EnglishName="The Most High"/>
+	<row SurahId="88" AyahCount="26" AyahId="5968" Name="الغاشية" TransliterationName="Al-Ghaashiya" EnglishName="The Overwhelming"/>
+	<row SurahId="89" AyahCount="30" AyahId="5994" Name="الفجر" TransliterationName="Al-Fajr" EnglishName="The Dawn"/>
+	<row SurahId="90" AyahCount="20" AyahId="6024" Name="البلد" TransliterationName="Al-Balad" EnglishName="The City"/>
+	<row SurahId="91" AyahCount="15" AyahId="6044" Name="الشمس" TransliterationName="Ash-Shams" EnglishName="The Sun"/>
+	<row SurahId="92" AyahCount="21" AyahId="6059" Name="الليل" TransliterationName="Al-Lail" EnglishName="The Night"/>
+	<row SurahId="93" AyahCount="11" AyahId="6080" Name="الضحى" TransliterationName="Ad-Dhuhaa" EnglishName="The Morning Hours"/>
+	<row SurahId="94" AyahCount="8" AyahId="6091" Name="الشرح" TransliterationName="Ash-Sharh" EnglishName="The Consolation"/>
+	<row SurahId="95" AyahCount="8" AyahId="6099" Name="التين" TransliterationName="At-Tin" EnglishName="The Fig"/>
+	<row SurahId="96" AyahCount="19" AyahId="6107" Name="العلق" TransliterationName="Al-Alaq" EnglishName="The Clot"/>
+	<row SurahId="97" AyahCount="5" AyahId="6126" Name="القدر" TransliterationName="Al-Qadr" EnglishName="The Power, Fate"/>
+	<row SurahId="98" AyahCount="8" AyahId="6131" Name="البينة" TransliterationName="Al-Bayyina" EnglishName="The Evidence"/>
+	<row SurahId="99" AyahCount="8" AyahId="6139" Name="الزلزلة" TransliterationName="Az-Zalzala" EnglishName="The Earthquake"/>
+	<row SurahId="100" AyahCount="11" AyahId="6147" Name="العاديات" TransliterationName="Al-Aadiyaat" EnglishName="The Chargers"/>
+	<row SurahId="101" AyahCount="11" AyahId="6158" Name="القارعة" TransliterationName="Al-Qaaria" EnglishName="The Calamity"/>
+	<row SurahId="102" AyahCount="8" AyahId="6169" Name="التكاثر" TransliterationName="At-Takaathur" EnglishName="Competition"/>
+	<row SurahId="103" AyahCount="3" AyahId="6177" Name="العصر" TransliterationName="Al-Asr" EnglishName="The Declining Day, Epoch"/>
+	<row SurahId="104" AyahCount="9" AyahId="6180" Name="الهمزة" TransliterationName="Al-Humaza" EnglishName="The Traducer"/>
+	<row SurahId="105" AyahCount="5" AyahId="6189" Name="الفيل" TransliterationName="Al-Fil" EnglishName="The Elephant"/>
+	<row SurahId="106" AyahCount="4" AyahId="6194" Name="قريش" TransliterationName="Quraish" EnglishName="Quraysh"/>
+	<row SurahId="107" AyahCount="7" AyahId="6198" Name="الماعون" TransliterationName="Al-Maaun" EnglishName="Almsgiving"/>
+	<row SurahId="108" AyahCount="3" AyahId="6205" Name="الكوثر" TransliterationName="Al-Kawthar" EnglishName="Abundance"/>
+	<row SurahId="109" AyahCount="6" AyahId="6208" Name="الكافرون" TransliterationName="Al-Kaafiroon" EnglishName="The Disbelievers"/>
+	<row SurahId="110" AyahCount="3" AyahId="6214" Name="النصر" TransliterationName="An-Nasr" EnglishName="Divine Support"/>
+	<row SurahId="111" AyahCount="5" AyahId="6217" Name="المسد" TransliterationName="Al-Masad" EnglishName="The Palm Fibre"/>
+	<row SurahId="112" AyahCount="4" AyahId="6222" Name="الإخلاص" TransliterationName="Al-Ikhlaas" EnglishName="Sincerity"/>
+	<row SurahId="113" AyahCount="5" AyahId="6226" Name="الفلق" TransliterationName="Al-Falaq" EnglishName="The Dawn"/>
+	<row SurahId="114" AyahCount="6" AyahId="6231" Name="الناس" TransliterationName="An-Naas" EnglishName="Mankind"/>
+</root>
