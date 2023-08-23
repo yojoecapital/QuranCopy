@@ -2,5 +2,5 @@
   "peek": 25,
   "resultsPerPage": 4,
   "ignoreAccents": true,
-  "useArabize": true
+  "useArabize": false
 }
