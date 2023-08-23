@@ -8,13 +8,13 @@ namespace QuranCopy
 {
     public static class FileManager
     {
-        static readonly string surahsFileName = "surahs.xml";
+        private static readonly string surahsFileName = "surahs.xml";
 
-        static readonly string ayatFileName = "ayat.xml";
+        private static readonly string ayatFileName = "ayat.xml";
 
-        static readonly string translationFileName = "translation.xml";
+        private static readonly string translationFileName = "translation.xml";
 
-        static string arabizePath = null;
+        private static string arabizePath = null;
 
         public static string SurahsFilePath
         {

@@ -5,10 +5,10 @@ namespace QuranCopy
 {
     class SearchSettings
     {
-        public int peek = 25;
-        public int resultsPerPage = 4;
-        public bool ignoreAccents = true;
-        public bool useArabize = false;
+        public int peek;
+        public int resultsPerPage;
+        public bool ignoreAccents;
+        public bool useArabize;
 
         public SearchSettings() { }
 

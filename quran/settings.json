@@ -1,6 +1,6 @@
 {
-  "reek": 25,
+  "peek": 25,
   "resultsPerPage": 4,
   "ignoreAccents": true,
-  "useArabize": false
+  "useArabize": true
 }
