@@ -14,16 +14,9 @@ namespace QuranCopy
 
         public static SearchSettings Create()
         {
-            try
-            {
-                var json = File.ReadAllText("settings.json");
-                var settings = JsonConvert.DeserializeObject<SearchSettings>(json);
-                return settings;
-            }
-            catch
-            {
-                return new SearchSettings();
-            }
+            var json = File.ReadAllText("settings.json");
+            var settings = JsonConvert.DeserializeObject<SearchSettings>(json);
+            return settings;
         }
     }
 
