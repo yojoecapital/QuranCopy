@@ -21,11 +21,6 @@ namespace QuranCopy
             }
         }
 
-        public static void SetUseArabize(bool set) 
-        {
-            Settings.useArabize = set;
-        }
-
         public static string RemoveAccents(this string input)
         {
             if (!Settings.ignoreAccents) return input;
