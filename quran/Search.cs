@@ -23,17 +23,20 @@ namespace QuranCopy
 
         public static string RemoveAccents(this string input)
         {
-            foreach (var key in settings.replace.Keys) 
-                input = input.Replace(key, settings.replace[key]);
-            if (!Settings.ignoreAccents) return input;
-            var stringBuilder = new StringBuilder();
-            var chars = input.Normalize(NormalizationForm.FormD).ToCharArray();
-            foreach (char letter in chars)
+            if (Settings.ignoreAccents)
             {
-                if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)
-                    stringBuilder.Append(letter);
+                var stringBuilder = new StringBuilder();
+                var chars = input.Normalize(NormalizationForm.FormD).ToCharArray();
+                foreach (char letter in chars)
+                {
+                    if (CharUnicodeInfo.GetUnicodeCategory(letter) != UnicodeCategory.NonSpacingMark)
+                        stringBuilder.Append(letter);
+                }
+                input = stringBuilder.ToString();
             }
-            return stringBuilder.ToString();
+            foreach (var key in settings.replace.Keys)
+                input = input.Replace(key, settings.replace[key]);
+            return input;
         }
 
 

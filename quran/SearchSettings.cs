@@ -21,6 +21,8 @@ namespace QuranCopy
             var json = File.ReadAllText(FileManager.SettingsFilePath);
             var settings = JsonConvert.DeserializeObject<SearchSettings>(json);
             FileManager.ArabizePath = settings.arabizePath;
+            if (settings.replace == null) 
+                settings.replace = new Dictionary<string, string>;
             return settings;
         }
     }
