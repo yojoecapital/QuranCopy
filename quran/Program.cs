@@ -29,7 +29,8 @@ namespace QuranCopy
             else if (args.Length == 1 && (args[0].Equals("help") || args[0].Equals("h")))
             {
                 Console.WriteLine("Usage:");
-                Console.WriteLine("  open                                   - Ppen the settings JSON");
+                Console.WriteLine("  open                                   - Open the settings JSON");
+                Console.WriteLine("  reload                                 - Reload the settings JSON");
                 Console.WriteLine("  [surah]                                - Get information about [surah]");
                 Console.WriteLine("  [surah] [ayah]                         - Copy [ayah] from [surah]");
                 Console.WriteLine("                                           (optionally add 't' at the end to copy translation too)");
