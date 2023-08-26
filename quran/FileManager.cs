@@ -64,6 +64,16 @@ namespace QuranCopy
             }
         }
 
+        private static readonly string settingsFileName = "settings.json";
+
+        public static string SettingsFilePath
+        {
+            get
+            {
+                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, settingsFileName);
+            }
+        }
+
         public static string ArabizePath
         {
             get

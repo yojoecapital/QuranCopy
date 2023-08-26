@@ -12,23 +12,19 @@ namespace QuranCopy
         private static void ProcessArgs(string[] args)
         {
             bool searchAyah = false, searchTranslation = false;
-            if (args.Length > 1 && args[0].Equals("arabize")) 
-            {
-                var path = Path.Combine(Path.GetFullPath(args[1]), "arabize.exe");
-                if (File.Exists(path))
-                {
-                    FileManager.ArabizePath = path;
-                    Search.SetUseArabize(true);
-                }
-                else Console.WriteLine("Error: path must point to 'arabize.exe'");
-            }
-            else if (args.Length > 1 && (searchAyah = args[0].Equals("ar?")) || (searchTranslation = args[0].Equals("en?")))
+            if (args.Length > 1 && (searchAyah = args[0].Equals("ar?")) || (searchTranslation = args[0].Equals("en?")))
             {
                 Search.Run(args, searchTranslation);
+            }
+            else if (args.Length == 1 && (args[0].Equals("open") || args[0].Equals("o")))
+            {
+                System.Diagnostics.Process.Start(FileManager.SettingsFilePath);
+                Console.WriteLine(FileManager.SettingsFilePath);
             }
             else if (args.Length == 1 && (args[0].Equals("help") || args[0].Equals("h")))
             {
                 Console.WriteLine("Usage:");
+                Console.WriteLine("  open                                   - Ppen the settings JSON");
                 Console.WriteLine("  [surah]                                - Get information about [surah]");
                 Console.WriteLine("  [surah] [ayah]                         - Copy [ayah] from [surah]");
                 Console.WriteLine("                                           (optionally add 't' at the end to copy translation too)");

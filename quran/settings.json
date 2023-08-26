@@ -7,4 +7,6 @@
     "ـ": "ا",
     "هۥ": "ه"
   }
+  "useArabize": false,
+  "arabizePath":  null
 }
