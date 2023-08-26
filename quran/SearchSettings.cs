@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace QuranCopy 
@@ -10,6 +11,7 @@ namespace QuranCopy
         public int resultsPerPage;
         public bool ignoreAccents;
         public bool useArabize;
+        public Dictionary<string, string> replace;
 
         public SearchSettings() { }
 

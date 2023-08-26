@@ -28,6 +28,8 @@ namespace QuranCopy
 
         public static string RemoveAccents(this string input)
         {
+            foreach (var key in settings.replace.Keys) 
+                input = input.Replace(key, settings.replace[key]);
             if (!Settings.ignoreAccents) return input;
             var stringBuilder = new StringBuilder();
             var chars = input.Normalize(NormalizationForm.FormD).ToCharArray();
