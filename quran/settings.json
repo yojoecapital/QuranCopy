@@ -3,10 +3,9 @@
   "resultsPerPage": 4,
   "ignoreAccents": true,
   "useArabize": false,
+  "arabizePath": null,
   "replace": {
     "ـ": "ا",
     "هۥ": "ه"
   }
-  "useArabize": false,
-  "arabizePath":  null
 }
