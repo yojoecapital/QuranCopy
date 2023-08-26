@@ -84,6 +84,7 @@ namespace QuranCopy
                                 SurahId = (string)ayahRow.Attribute("SurahId"),
                                 Number = int.Parse((string)ayahRow.Attribute("Number"))
                             });
+            if (!searchTranslation) arg = arg.RemoveAccents();
             foreach (var row in iterator)
             {
                 var number = row.Number;
