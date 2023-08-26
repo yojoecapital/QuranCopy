@@ -21,6 +21,11 @@ namespace QuranCopy
                 System.Diagnostics.Process.Start(FileManager.SettingsFilePath);
                 Console.WriteLine(FileManager.SettingsFilePath);
             }
+            else if (args.Length == 1 && (args[0].Equals("reload") || args[0].Equals("r")))
+            {
+                Search.ReloadSettings();
+                Console.WriteLine("Reloaded settings");
+            }
             else if (args.Length == 1 && (args[0].Equals("help") || args[0].Equals("h")))
             {
                 Console.WriteLine("Usage:");

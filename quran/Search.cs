@@ -21,6 +21,8 @@ namespace QuranCopy
             }
         }
 
+        public static void ReloadSettings() => settings = SearchSettings.Create();
+
         public static string RemoveAccents(this string input)
         {
             if (Settings.ignoreAccents)
