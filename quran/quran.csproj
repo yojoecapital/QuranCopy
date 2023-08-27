@@ -76,4 +76,7 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release del /S $(TargetDir)*.pdb</PostBuildEvent>
+  </PropertyGroup>
 </Project>
