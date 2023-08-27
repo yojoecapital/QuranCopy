@@ -145,7 +145,7 @@ Use the argument `en?` followed by English text to search for that sequence in t
 ### Releasing
 
 ```
-dotnet msbuild --property:Configuration=Release && cd Quran/bin/Release && 7z a Quran.zip * && gh release create v1.0.0 ./Quran.zip -t "v1.0.0" -F ./RELEASE.md && cd ../../..
+dotnet msbuild --property:Configuration=Release && cd Quran/bin/Release && 7z a Quran.zip * && gh release create v1.0.0 ./Quran.zip -t "v1.0.0" --target main -F ./RELEASE.md && cd ../../..
 ```
 
 ## Contact
