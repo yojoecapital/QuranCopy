@@ -29,17 +29,17 @@ namespace QuranCopy
             else if (args.Length == 1 && (args[0].Equals("help") || args[0].Equals("h")))
             {
                 Console.WriteLine("Usage:");
-                Console.WriteLine("  open                                   - Open the settings JSON");
-                Console.WriteLine("  reload                                 - Reload the settings JSON");
-                Console.WriteLine("  [surah]                                - Get information about [surah]");
-                Console.WriteLine("  [surah] [ayah]                         - Copy [ayah] from [surah]");
-                Console.WriteLine("                                           (optionally add 't' at the end to copy translation too)");
-                Console.WriteLine("  [surah] [start] [end]                  - Copy ayat [start] to [end] from [surah]");
-                Console.WriteLine("                                           (optionally add 't' at the end to copy translation too)");
-                Console.WriteLine("  ar? [text]                             - Searches for arabic [text] (will use arabize if found)");
-                Console.WriteLine("  en? [text]                             - Searches for translation [text]");
-                Console.WriteLine("  clear                                  - Clear the console screen");
-                Console.WriteLine("  quit                                   - Exit the program");
+                Console.WriteLine("  open (o)                     - Open the settings JSON");
+                Console.WriteLine("  reload (r)                   - Reload the settings JSON");
+                Console.WriteLine("  [surah]                      - Get information about [surah]");
+                Console.WriteLine("  [surah] [ayah]               - Copy [ayah] from [surah]");
+                Console.WriteLine("                                 (optionally add 't' at the end to copy translation too)");
+                Console.WriteLine("  [surah] [start] [end]        - Copy ayat [start] to [end] from [surah]");
+                Console.WriteLine("                                 (optionally add 't' at the end to copy translation too)");
+                Console.WriteLine("  ar? [text]                   - Searches for Arabic [text] (will use arabize.exe if found)");
+                Console.WriteLine("  en? [text]                   - Searches for translation [text]");
+                Console.WriteLine("  clear (cls)                  - Clear the console screen");
+                Console.WriteLine("  quit (q)                     - Exit the program");
 
             }
             else if (args.Length == 1)
