@@ -16,35 +16,6 @@ namespace QuranCopyCore.Managers
 
         public SearchManager(QuranCopyCoreFileManager fileManager) =>
             this.fileManager = fileManager;
-       
-        public string RunArabize(string input)
-        {
-            var settings = fileManager.Settings;
-            if (settings != null && settings.useArabize)
-            {
-                string path = fileManager.Settings.arabizePath;
-                if (!string.IsNullOrEmpty(path))
-                {
-                    var startInfo = new ProcessStartInfo
-                    {
-                        FileName = path,
-                        Arguments = input,
-                        RedirectStandardOutput = true,
-                        UseShellExecute = false,
-                        CreateNoWindow = true
-                    };
-                    using Process process = new();
-                    process.StartInfo = startInfo;
-                    process.Start();
-                    string output = process.StandardOutput.ReadToEnd();
-                    process.WaitForExit();
-                    return Helpers.RemoveAccents(output.Trim('\r', '\n', ' ', '\t'), settings.replace, settings.ignoreAccents);
-                }
-                else return Helpers.RemoveAccents(input, settings.replace, settings.ignoreAccents);
-            }
-            else return input;
-        }
-
 
         public IEnumerable<string> TextLookup(Settings settings, string arg, bool searchTranslation)
         {
@@ -52,7 +23,6 @@ namespace QuranCopyCore.Managers
             var surahs = fileManager.Surahs;
             if (iterator != null && surahs != null)
             {
-                if (!searchTranslation) arg = Helpers.RemoveAccents(arg, settings.replace, settings.ignoreAccents);
                 foreach (var row in iterator)
                 {
                     var number = row.Number;

@@ -23,13 +23,43 @@ namespace QuranCopyCore.Managers
             fileManager = searchManager.fileManager;
         }
 
+        public string RunArabize(string input)
+        {
+            var settings = fileManager.Settings;
+            if (settings != null && settings.useArabize)
+            {
+                string path = fileManager.Settings.arabizePath;
+                if (!string.IsNullOrEmpty(path))
+                {
+                    var startInfo = new ProcessStartInfo
+                    {
+                        FileName = path,
+                        Arguments = input,
+                        RedirectStandardOutput = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
+                    using Process process = new();
+                    process.StartInfo = startInfo;
+                    process.Start();
+                    string output = process.StandardOutput.ReadToEnd();
+                    process.WaitForExit();
+                    return Helpers.RemoveAccents(output.Trim('\r', '\n', ' ', '\t'), settings.replace, settings.ignoreAccents).Replace("\r", string.Empty).Replace("\n", string.Empty).Replace("\t", string.Empty);
+                }
+                else return Helpers.RemoveAccents(input, settings.replace, settings.ignoreAccents);
+            }
+            else return input;
+        }
+
         public void ArabicLookup(string[] args)
         {
             var settings = fileManager.Settings;
             if (settings != null) 
             {
-                var lookup = searchManager.TextLookup(settings, string.Join(" ", args.Skip(1)), false);
-                PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage);
+                var arg = string.Join(" ", args.Skip(1));
+                arg = Helpers.RemoveAccents(RunArabize(arg), settings.replace, settings.ignoreAccents);
+                var lookup = searchManager.TextLookup(settings, arg, false);
+                PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage, "Searching for: \"" + arg + "\"");
             }
         }
 
@@ -38,8 +68,10 @@ namespace QuranCopyCore.Managers
             var settings = fileManager.Settings;
             if (settings != null)
             {
-                var lookup = searchManager.TextLookup(settings, string.Join(" ", args.Skip(1)), true);
+                var arg = string.Join(" ", args.Skip(1));
+                var lookup = searchManager.TextLookup(settings, arg, true);
                 PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage);
+                PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage, "Searching for: \"" + arg + "\"");
             }
         }
 
