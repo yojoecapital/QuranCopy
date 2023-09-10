@@ -5,6 +5,10 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "quran", "QuranCopy\quran.csproj", "{411E67FD-36FF-4479-A3A5-ED352537402A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuranCopyCore", "QuranCopyCore\QuranCopyCore.csproj", "{71861677-712D-415C-A688-A6819D471B25}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CliFramework", "CliFramework\CliFramework.csproj", "{69EB54C4-4A41-4A30-A9D8-60BB4DEC9A32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{411E67FD-36FF-4479-A3A5-ED352537402A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{411E67FD-36FF-4479-A3A5-ED352537402A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{411E67FD-36FF-4479-A3A5-ED352537402A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71861677-712D-415C-A688-A6819D471B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71861677-712D-415C-A688-A6819D471B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71861677-712D-415C-A688-A6819D471B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71861677-712D-415C-A688-A6819D471B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69EB54C4-4A41-4A30-A9D8-60BB4DEC9A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69EB54C4-4A41-4A30-A9D8-60BB4DEC9A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69EB54C4-4A41-4A30-A9D8-60BB4DEC9A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69EB54C4-4A41-4A30-A9D8-60BB4DEC9A32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
