@@ -43,7 +43,11 @@ namespace QuranCopyCore.Managers
             }
         }
 
-        public void Reload(string[] _) => fileManager.Reload();
+        public void Reload(string[] _)
+        {
+            fileManager.Reload();
+            Console.WriteLine("Reloaded settings.");
+        }
 
         public void OpenSettings(string[] _)
         {
