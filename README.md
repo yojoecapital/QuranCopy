@@ -10,7 +10,13 @@ Pass a Surah number and an Ayah number to have the Ayah's Arabic Unicode text co
 
 ```
 > 18 1
-Copied ayah 1 of (18) Al-Kahf
+{
+  "SurahName": "Al-Kahf",
+  "AyahId": 2141,
+  "Number": 1,
+  "SurahId": 18,
+  "Ayah": "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ وَلَمْ يَجْعَل لَّهُۥ عِوَجَا ۜ"
+}
 ```
 
 This copies Ayah 1 of Al-Kahf:
@@ -21,15 +27,27 @@ Pass a Surah name to get its metadata. If the spelling is not correct, the close
 
 ```
 > al-mlk
-(67) Al-Mulk
-Ayat Count: 30
+{
+  "SurahId": 67,
+  "AyahCount": 30,
+  "AyahId": 5242,
+  "Name": "الملك",
+  "TransliterationName": "Al-Mulk",
+  "EnglishName": "The Sovereignty"
+}
 ```
 
 Pass a Surah name and an Ayah number to have the Ayah's Arabic Unicode text copied to clipboard. 
 
 ```
 > al-mlk 3
-Copied ayah 3 of (67) Al-Mulk
+{
+  "SurahName": "Al-Mulk",
+  "AyahId": 5244,
+  "Number": 3,
+  "SurahId": 67,
+  "Ayah": "ٱلَّذِى خَلَقَ سَبْعَ سَمَـٰوَٰتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِى خَلْقِ ٱلرَّحْمَـٰنِ مِن تَفَـٰوُتٍ ۖ فَٱرْجِعِ ٱلْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ"
+}
 ```
 
 This copies Ayah 3 of Al-Mulk:
@@ -40,7 +58,22 @@ Pass a Surah name (or number) as well as a start Ayah number and an end Ayah Num
 
 ```
 > al-mlk 1 3
-Copied ayat 1 through 3 of (67) Al-Mulk
+[
+  {
+    "SurahName": "Al-Mulk",
+    "AyahId": 5242,
+    "Number": 1,
+    "SurahId": 67,
+    "Ayah": "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ تَبَـٰرَكَ ٱلَّذِى بِيَدِهِ ٱلْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَىْءٍ قَدِيرٌ"
+  },
+  {
+    "SurahName": "Al-Mulk",
+    "AyahId": 5244,
+    "Number": 3,
+    "SurahId": 67,
+    "Ayah": "ٱلَّذِى خَلَقَ سَبْعَ سَمَـٰوَٰتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِى خَلْقِ ٱلرَّحْمَـٰنِ مِن تَفَـٰوُتٍ ۖ فَٱرْجِعِ ٱلْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ"
+  }
+]
 ```
 
 > This copies Ayat 1 through 10 of Al-Mulk:
@@ -55,8 +88,25 @@ Copied ayat 1 through 3 of (67) Al-Mulk
 Add the last argument `t` to also copy the translation.
 
 ```
-$ quran an-naas 1 2 t
-Copied ayat 1 through 2 of (114) An-Naas with translation
+> an-naas 1 2 t
+[
+  {
+    "SurahName": "An-Naas",
+    "AyahId": 0,
+    "Number": 1,
+    "SurahId": 114,
+    "Ayah": "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ",
+    "Translation": "Say, \"I seek refuge in the Lord of people,"
+  },
+  {
+    "SurahName": "An-Naas",
+    "AyahId": 0,
+    "Number": 2,
+    "SurahId": 114,
+    "Ayah": "مَلِكِ ٱلنَّاسِ",
+    "Translation": "the King of people,"
+  }
+]
 ```
 
 > This copies Ayat 1 through 6 of An-Naas with its translation:
@@ -145,7 +195,7 @@ Use the argument `en?` followed by English text to search for that sequence in t
 ### Releasing
 
 ```
-dotnet msbuild --property:Configuration=Release && cd QuranCopy/bin/Release && 7z a QuranCopy.zip * && gh release create v1.0.0 ./QuranCopy.zip -t "v1.0.0" --target main -F ./RELEASE.md && cd ../../..
+dotnet build --property:Configuration=Release && cd QuranCopyCore/bin/Release/net6.0-windows && del *.zip && 7z a QuranCopy.zip * && gh release create v1.1.0 ./QuranCopy.zip -t "v1.1.0" --target main -F ./RELEASE.md && cd ../../../..
 ```
 
 ## Contact
