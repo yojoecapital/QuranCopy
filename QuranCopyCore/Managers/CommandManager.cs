@@ -71,7 +71,6 @@ namespace QuranCopyCore.Managers
             {
                 var arg = string.Join(" ", args.Skip(1));
                 var lookup = searchManager.TextLookup(settings, arg, true);
-                PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage);
                 PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage, "Searching for: \"" + arg.OneLine() + "\"");
             }
         }
