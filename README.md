@@ -194,8 +194,35 @@ Use the argument `en?` followed by English text to search for that sequence in t
 
 ### Releasing
 
-```
+```cmd
 dotnet build --property:Configuration=Release && cd QuranCopyCore/bin/Release/net6.0-windows && del *.zip && 7z a QuranCopy.zip * && gh release create v1.1.0 ./QuranCopy.zip -t "v1.1.0" --target main -F ./RELEASE.md && cd ../../../..
+```
+
+### Updating
+
+```bash
+#!/bin/bash
+
+# GitHub repository and release information
+REPO_OWNER="yojoecapital"
+REPO_NAME="QuranCopy"
+
+# Download the latest release ZIP file
+gh release download -R "$REPO_OWNER/$REPO_NAME" --pattern "*.zip"
+
+# Rename the settings file
+mv settings.json tmp.json
+
+# Extract the ZIP file using 7z (assuming 7z is installed)
+7z x "$REPO_NAME.zip"
+
+# Restore the settings file
+mv tmp.json settings.json
+
+# Delete the downloaded ZIP file
+rm "$REPO_NAME.zip"
+
+echo "Download, extraction, and cleanup complete."
 ```
 
 ## Contact
