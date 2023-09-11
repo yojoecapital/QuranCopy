@@ -28,7 +28,7 @@ namespace QuranCopyCore.Managers
             var settings = fileManager.Settings;
             if (settings != null && settings.useArabize)
             {
-                string path = fileManager.Settings.arabizePath;
+                string path = settings.arabizePath;
                 if (!string.IsNullOrEmpty(path))
                 {
                     var startInfo = new ProcessStartInfo
@@ -41,10 +41,11 @@ namespace QuranCopyCore.Managers
                     };
                     using Process process = new();
                     process.StartInfo = startInfo;
+                    process.StartInfo.StandardOutputEncoding = Encoding.Unicode;
                     process.Start();
                     string output = process.StandardOutput.ReadToEnd();
                     process.WaitForExit();
-                    return Helpers.RemoveAccents(output.Trim('\r', '\n', ' ', '\t'), settings.replace, settings.ignoreAccents).Replace("\r", string.Empty).Replace("\n", string.Empty).Replace("\t", string.Empty);
+                    return Helpers.RemoveAccents(output.Trim('\r', '\n', ' ', '\t'), settings.replace, settings.ignoreAccents);
                 }
                 else return Helpers.RemoveAccents(input, settings.replace, settings.ignoreAccents);
             }
@@ -59,7 +60,7 @@ namespace QuranCopyCore.Managers
                 var arg = string.Join(" ", args.Skip(1));
                 arg = Helpers.RemoveAccents(RunArabize(arg), settings.replace, settings.ignoreAccents);
                 var lookup = searchManager.TextLookup(settings, arg, false);
-                PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage, "Searching for: \"" + arg + "\"");
+                PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage, "Searching for: \"" + arg.OneLine() + "\"");
             }
         }
 
@@ -71,7 +72,7 @@ namespace QuranCopyCore.Managers
                 var arg = string.Join(" ", args.Skip(1));
                 var lookup = searchManager.TextLookup(settings, arg, true);
                 PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage);
-                PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage, "Searching for: \"" + arg + "\"");
+                PrettyConsole.PrintPagedList(lookup, settings.resultsPerPage, "Searching for: \"" + arg.OneLine() + "\"");
             }
         }
 
