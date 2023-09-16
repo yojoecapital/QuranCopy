@@ -101,7 +101,9 @@ namespace QuranCopyCore.Managers
                 var surah = Helpers.GetSurah(surahs, args[0]);
                 if (surah != null)
                 {
-                    Clipboard.SetText(surah.Name);
+                    if (args.Length >= 2 && args[1].Equals("t"))
+                        Clipboard.SetText(surah.TransliterationName);
+                    else Clipboard.SetText(surah.Name);
                     PrettyConsole.PrintColor(surah, ConsoleColor.Yellow);
                 }
                 else PrettyConsole.PrintError("Surah not found.");

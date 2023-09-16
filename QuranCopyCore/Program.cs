@@ -38,20 +38,20 @@ namespace QuranCopyCore
                 "Reload the settings JSON file."
             );
             repl.AddCommand(
-                args => args.Length == 1,
+                args => args.Length == 1 || (args.Length == 2 && args[1].Equals("t")),
                 commandManager.CopySurah,
-                "[surah-number | surah-name]",
-                "Display metadata for the surah."
+                "[surah-number | surah-name] [t?]",
+                "Display metadata for the surah.\nThe optional [t?] will copy\nthe transliterated name."
             );
             repl.AddCommand(
                 args => args.Length > 1,
                 commandManager.CopyAyah,
                 "[surah-number | surah-name] [ayah-number] [t?]",
-                "Copy the ayah.\nThe optional [t?] will include the translation."
+                "Copy the ayah.\nThe optional [t?] will\ninclude the translation."
             );
             repl.AddDescription(
                 "[surah-number | surah-name] [ayah-number] [ayah-number] [t?]",
-                "Copy the range of ayat.\nThe optional [t?] will include the translation."
+                "Copy the range of ayat.\nThe optional [t?] will\ninclude the translation."
             );
             repl.Run(args, true);
         }
