@@ -155,21 +155,22 @@ namespace QuranCopyCore.Managers
                         }
                         else // single-line copy
                         {
-                            var ayahModel = ayat.FirstOrDefault(ayah => ayah.SurahId == surahNumber && ayah.Number == ayahNumber);
-                            if (ayahModel == null)
-                            {
-                                PrettyConsole.PrintError("Ayah not found.");
-                                return;
-                            }
                             if (args.Length > 2 && args[2].Equals("t"))
                             {
-                                var copy = ayahModel.Ayah;
+                                var ayahModel = fileManager.AyatTranslation?.FirstOrDefault(row => surahNumber.Equals(row.SurahId) && ayahNumber == row.Number);
+                                if (ayahModel == null)
+                                {
+                                    PrettyConsole.PrintError("Ayat not found.");
+                                    return;
+                                }
+                                var copy = ayahModel.Ayah + "\n" + ayahModel.Translation;
                                 Clipboard.SetText(copy);
-                                PrettyConsole.PrintColor(new AyahSurahModel(ayahModel, surahs), ConsoleColor.Yellow);
+                                PrettyConsole.PrintColor(new AyahTranslationSurahModel(ayahModel, surahs), ConsoleColor.Yellow);
                             }
                             else
                             {
-                                var copy = ayahModel.Ayah + "\n" + translation;
+                                var ayahModel = ayat.FirstOrDefault(ayah => ayah.SurahId == surahNumber && ayah.Number == ayahNumber);
+                                var copy = ayahModel.Ayah;
                                 Clipboard.SetText(copy);
                                 PrettyConsole.PrintColor(new AyahSurahModel(ayahModel, surahs), ConsoleColor.Yellow);
                             }
