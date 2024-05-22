@@ -36,7 +36,4 @@
     <ProjectReference Include="..\CliFramework\CliFramework.csproj" />
   </ItemGroup>
   
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if $(ConfigurationName) == Release del /S $(TargetDir)*.pdb" />
-  </Target>
 </Project>
